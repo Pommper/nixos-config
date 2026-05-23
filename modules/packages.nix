@@ -15,14 +15,13 @@
     nix-tree    # Nix Abhängigkeiten visualisieren
     nvd         # Nix Version Diff
 
-    # ── Terminal Tools (Rust) ─────────────────────────────────
+    # ── Terminal Tools ─────────────────────────────────
     eza
     bat
     ripgrep
     fd
     dust
     procs
-    bottom
     zoxide
     fzf
     fastfetch
@@ -31,7 +30,7 @@
     yazi
     atuin
     zellij
-    helix
+    btop
 
     # ── Entwicklung ───────────────────────────────────────────
     vscode
@@ -40,11 +39,12 @@
     gnumake
 
     # ── Apps ──────────────────────────────────────────────────
-    firefox
     brave
     vesktop
-    obsidian
     nautilus    # File Manager
+    kitty
+    spotify
+    steam
 
     # ── Editor ────────────────────────────────────────────────
     neovim

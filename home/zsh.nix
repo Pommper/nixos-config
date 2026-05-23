@@ -13,7 +13,6 @@
       confirm_os_window_close = 0;
       enable_audio_bell       = false;
     };
-    theme = "Tokyo Night";
   };
 
   programs.zsh = {
@@ -28,8 +27,8 @@
       lt      = "eza --tree --icons";
       cat     = "bat";
       cd      = "z";
-      rebuild = "sudo nixos-rebuild switch --flake ~/.config/nixos";
-      update  = "nix flake update ~/.config/nixos";
+      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos";
+      update  = "nix flake update ~/.nixos";
       cleanup = "sudo nix-collect-garbage -d";
       gs      = "git status";
       gp      = "git push";

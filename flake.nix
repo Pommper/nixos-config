@@ -20,7 +20,7 @@
           {
             home-manager.useGlobalPkgs    = true;
             home-manager.useUserPackages  = true;
-            home-manager.users.DEINNAME   = import ./home/home.nix;
+            home-manager.users.micha   = import ./home/home.nix;
           }
         ];
       };
