@@ -19,6 +19,7 @@
 
   networking.hostName = "laptop";
 
+  programs.steam.enable = true;
   # ── Nvidia (RTX 3070) ────────────────────────────────────────
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {

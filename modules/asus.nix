@@ -6,9 +6,7 @@
   # ── Asus Kontrolle ──────────────────────────────────────────
   services.asusd = {
     enable            = true;
-    enableUserService = true;
   };
-  programs.asusctl.enable = true;
 
   # ── OpenRGB ─────────────────────────────────────────────────
   services.hardware.openrgb.enable = true;
@@ -21,9 +19,9 @@
 
   # ── Wasserkühlung & Sensoren ────────────────────────────────
   environment.systemPackages = with pkgs; [
+    asusctl
     liquidctl
     lm_sensors
-    fancontrol
   ];
 
   hardware.sensor.iio.enable = true;

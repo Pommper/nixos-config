@@ -3,10 +3,17 @@
 
 {
   wayland.windowManager.hyprland = {
-    enable = true;
-    # Liest die native Hyprland-Config ein
-    extraConfig = builtins.readFile ./hyprland.conf;
+    enable   = true;
+    withUWSM = true;
+    # Liest die native Hyprland-Config aus dem hyprland/ Directory
+    extraConfig = builtins.readFile ../../hyprland/hyprland.conf;
   };
 
-  programs.wofi.enable = true;
+  programs.rofi.enable = true;
+
+  # Ganzes hyprland/ Directory nach ~/.config/hypr/ verlinken
+  xdg.configFile."hypr" = {
+    source    = ../../hyprland;
+    recursive = true;
+  };
 }
