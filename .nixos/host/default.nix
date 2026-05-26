@@ -1,4 +1,4 @@
-# hosts/desktop/default.nix
+# host/default.nix
 { ... }:
 
 {
@@ -7,6 +7,7 @@
     ../../modules/audio.nix
     ../../modules/asus.nix
     ../../modules/bluetooth.nix
+    ../../modules/boot.nix
     ../../modules/fonts.nix
     ../../modules/kernel.nix
     ../../modules/net.nix
@@ -32,15 +33,6 @@
     enable          = true;
     wayland.enable  = true;
   };
-
-  # ── Bootloader (Grub statt systemd-boot) ─────────────────────
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.grub = {
-    enable  = true;
-    device  = "nodev";
-    efiSupport = true;
-  };
-boot.loader.efi.canTouchEfiVariables = true;
 
   # ── GPU Passthrough (später einrichten) ──────────────────────
   # virtualisation.libvirtd.enable = true;

@@ -1,11 +1,11 @@
 # modules/boot.nix
 { ... }:
 
-{
-  boot.loader = {
-    systemd-boot.enable      = true;
-    efi.canTouchEfiVariables = true;
-    # Letzte 5 Generationen im Bootmenü behalten
-    systemd-boot.configurationLimit = 5;
-  };
-}
+# ── Bootloader (Grub statt systemd-boot) ─────────────────────
+boot.loader.systemd-boot.enable = false;
+boot.loader.grub = {
+  enable  = true;
+  device  = "nodev";
+  efiSupport = true;
+};
+boot.loader.efi.canTouchEfiVariables = true;

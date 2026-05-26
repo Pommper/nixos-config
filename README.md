@@ -6,13 +6,9 @@
 nixos-config/
 ├── flake.nix
 ├── flake.lock
-├── hosts/
-│   ├── laptop/
-│   │   ├── default.nix                  # Laptop-spezifisch (Nvidia RTX 3070, KDE)
-│   │   └── hardware-configuration.nix   # automatisch generiert
-│   └── desktop/
-│       ├── default.nix                  # Desktop-spezifisch (AMD RX 9070 XT, Hyprland)
-│       └── hardware-configuration.nix   # automatisch generiert
+├── host
+│   ├── default.nix                  # Desktop-spezifisch (AMD RX 9070 XT, Hyprland)
+│   └── hardware-configuration.nix   # automatisch generiert
 ├── modules/                             # systemweit, jedes Thema separat
 │   ├── asus.nix                         # Asus + RGB (beide Geräte)
 │   ├── audio.nix                        # Pipewire
@@ -25,23 +21,18 @@ nixos-config/
 │   ├── packages.nix                     # Alle Pakete systemweit
 │   ├── timezone.nix                     # Zeitzone, Sprache, Tastatur
 │   └── user.nix                         # User micha
-├── hyprland/                            # Hyprland in nativer Syntax
-│   ├── hyprland.conf                    # Hauptkonfiguration
-│   └── binds.conf                       # Keybindings
 └── home/                                # User-Konfiguration (Home Manager)
     ├── home.nix                         # Einstiegspunkt
     ├── env.nix                          # Umgebungsvariablen
-    ├── shell/
-    │   └── zsh.nix                      # Zsh + Kitty + Starship
-    └── hyprland/
-        └── default.nix                  # Aktiviert Hyprland via Home Manager
+    ├── hyprland.nix                     # Aktiviert hyprland
+    └── shell/
+        └── zsh.nix                      # Zsh + Kitty + Starship
 ```
 
 ## Hardware
 
 | Gerät | CPU | GPU | DE |
 |---|---|---|---|
-| Laptop | AMD Ryzen (Asus ROG Strix G17) | Nvidia RTX 3070 + AMD iGPU | KDE Plasma 6 |
 | Desktop | AMD Ryzen 9 7800X | AMD RX 9070 XT | Hyprland |
 
 ## Erste Schritte nach Installation
@@ -54,14 +45,10 @@ nix-shell -p git
 git clone https://github.com/Pommper/nixos-config ~/.nixos
 
 # 3. Hardware-Config kopieren
-cp /etc/nixos/hardware-configuration.nix ~/.nixos/hosts/laptop/
-# oder für Desktop:
-cp /etc/nixos/hardware-configuration.nix ~/.nixos/hosts/desktop/
+cp /etc/nixos/hardware-configuration.nix ~/.nixos/host/
 
 # 4. System bauen
-sudo nixos-rebuild switch --flake ~/.nixos#laptop
-# oder:
-sudo nixos-rebuild switch --flake ~/.nixos#desktop
+sudo nixos-rebuild switch --flake ~/.nixos#nix-btw
 ```
 
 ## Wichtige Befehle
@@ -84,16 +71,9 @@ gp              # git push
 gl              # git pull
 ```
 
-## Hyprland aktivieren (Desktop)
-
-In `home/home.nix` einkommentieren:
-```nix
-./hyprland/default.nix
-```
-
 ## GPU Passthrough aktivieren (Desktop, später)
 
-In `hosts/desktop/default.nix` einkommentieren:
+In `host/default.nix` einkommentieren:
 ```nix
 virtualisation.libvirtd.enable = true;
 virtualisation.libvirtd.qemu.ovmf.enable = true;
