@@ -20,9 +20,9 @@
   networking.hostName = "nix-btw";
 
   # ── AMD GPU (RX 9070 XT) ─────────────────────────────────────
-  hardware.amdgpu.enable            = true;
-  services.xserver.videoDrivers     = [ "amdgpu" ];
-  services.hardware.openrgb.motherboard = "amd";
+  #hardware.amdgpu.enable            = true;
+  #services.xserver.videoDrivers     = [ "amdgpu" ];
+  #services.hardware.openrgb.motherboard = "amd";
 
   # ── Hyprland ─────────────────────────────────────────────────
   programs.hyprland = {
