@@ -16,7 +16,7 @@
     ../../modules/user.nix
   ];
 
-  networking.hostName = "desktop";
+  networking.hostName = "nix-btw";
 
   # ── AMD GPU (RX 9070 XT) ─────────────────────────────────────
   hardware.amdgpu.enable            = true;

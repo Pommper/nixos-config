@@ -25,7 +25,7 @@
         ];
       };
 
-      desktop = nixpkgs.lib.nixosSystem {
+      nix-btw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/desktop
