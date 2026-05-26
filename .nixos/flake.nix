@@ -12,23 +12,10 @@
   outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
 
-      laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/laptop
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs    = true;
-            home-manager.useUserPackages  = true;
-            home-manager.users.micha   = import ./home/home.nix;
-          }
-        ];
-      };
-
       nix-btw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/desktop
+          ./host
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs    = true;
