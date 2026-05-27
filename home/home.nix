@@ -5,13 +5,17 @@
   imports = [
     ./env.nix
     ./shell/zsh.nix
-    # Hyprland nur auf Desktop – einkommentieren wenn bereit:
     ./hyprland.nix
   ];
 
   home.username      = "micha";
   home.homeDirectory = "/home/micha";
   home.stateVersion  = "25.11";
+
+  xdg.userDirs = {
+  	enable = true;
+	createDirectories = true;
+  };
 
   programs.home-manager.enable = true;
 

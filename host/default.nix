@@ -4,17 +4,17 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/audio.nix
-    ../../modules/asus.nix
-    ../../modules/bluetooth.nix
-    ../../modules/boot.nix
-    ../../modules/fonts.nix
-    ../../modules/kernel.nix
-    ../../modules/net.nix
-    ../../modules/nix.nix
-    ../../modules/packages.nix
-    ../../modules/timezone.nix
-    ../../modules/user.nix
+    ../modules/audio.nix
+    ../modules/asus.nix
+    ../modules/bluetooth.nix
+    ../modules/boot.nix
+    ../modules/fonts.nix
+    ../modules/kernel.nix
+    ../modules/net.nix
+    ../modules/nix.nix
+    ../modules/packages.nix
+    ../modules/timezone.nix
+    ../modules/user.nix
   ];
 
   networking.hostName = "nix-btw";
