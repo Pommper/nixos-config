@@ -25,7 +25,7 @@
           {
             home-manager.useGlobalPkgs    = true;
             home-manager.useUserPackages  = true;
-	    home-manager.extraSpecialArgs = { inherit cealestia-shell; };
+	    home-manager.extraSpecialArgs = { inherit caelestia-shell; };
             home-manager.users.micha      = import ./home/home.nix;
           }
         ];
