@@ -45,6 +45,7 @@
     kitty
     spotify
     rofi
+    quickshell
 
     # ── Editor ────────────────────────────────────────────────
     neovim

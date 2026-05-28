@@ -7,9 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, caelestia-shell, ... }: {
     nixosConfigurations = {
 
       nix-btw = nixpkgs.lib.nixosSystem {
@@ -20,7 +25,8 @@
           {
             home-manager.useGlobalPkgs    = true;
             home-manager.useUserPackages  = true;
-            home-manager.users.micha   = import ./home/home.nix;
+	    home-manager.extraSpecialArgs = { inherit cealestia-shell; };
+            home-manager.users.micha      = import ./home/home.nix;
           }
         ];
       };

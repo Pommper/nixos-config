@@ -10,6 +10,9 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
+      material-symbols
+      papirus-icon-theme
+      fluent-icon-theme
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font" ];

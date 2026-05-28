@@ -16,14 +16,19 @@
   	enable = true;
 	createDirectories = true;
 	desktop   = "${config.home.homeDirectory}/Desktop";
-  	documents = "${config.home.homeDirectory}/Dokumente";
+  	documents = "${config.home.homeDirectory}/Documents";
   	download  = "${config.home.homeDirectory}/Downloads";
-  	music     = "${config.home.homeDirectory}/Musik";
-  	pictures  = "${config.home.homeDirectory}/Bilder";
+  	music     = "${config.home.homeDirectory}/Music";
+  	pictures  = "${config.home.homeDirectory}/Pictures";
   	videos    = "${config.home.homeDirectory}/Videos";
   };
 
   programs.home-manager.enable = true;
 
   xdg.enable = true;
+
+  # ── Caelestia Shell ─────────────────────────────────────────
+  home.packages = [
+  	caelestia-shell.packages.x86_64-linux.with-cli
+  ];
 }
