@@ -44,7 +44,6 @@
     nautilus    # File Manager
     kitty
     spotify
-    steam
     rofi
 
     # ── Editor ────────────────────────────────────────────────
@@ -57,4 +56,6 @@
     # ── RGB ───────────────────────────────────────────────────
     openrgb
   ];
+
+  programs.steam.enable = true;
 }
