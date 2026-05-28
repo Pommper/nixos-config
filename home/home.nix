@@ -1,5 +1,5 @@
 # home/home.nix
-{ config, ... }:
+{ config, pkgs, caelestia-shell, ... }:
 
 {
   imports = [
