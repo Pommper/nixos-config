@@ -1,11 +1,12 @@
 # home/home.nix
-{ config, pkgs, caelestia-shell, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./env.nix
     ./shell/zsh.nix
     ./hyprland.nix
+    ./caelestia.nix
   ];
 
   home.username      = "micha";
@@ -26,26 +27,4 @@
   programs.home-manager.enable = true;
 
   xdg.enable = true;
-
-  # ── Caelestia Shell ─────────────────────────────────────────
-  /*programs.caelestia = {
-    enable = true;
-    systemd = {
-      enable = false; # if you prefer starting from your compositor
-      target = "graphical-session.target";
-      environment = [];
-    };
-    settings = {
-      bar.status = {
-        showBattery = true;
-      };
-      paths.wallpaperDir = "~/Images";
-    };
-    cli = {
-      enable = true; # Also add caelestia-cli to path
-      settings = {
-        theme.enableGtk = false;
-      };
-    };
-  };*/
 }

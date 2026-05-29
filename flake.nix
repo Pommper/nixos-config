@@ -22,11 +22,11 @@
 	specialArgs = { inherit inputs; };
         modules = [
           ./host
-	  ./caelestia.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs    = true;
             home-manager.useUserPackages  = true;
+	    home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.micha = import ./home/home.nix;
           }
         ];
