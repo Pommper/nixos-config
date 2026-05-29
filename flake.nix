@@ -14,19 +14,20 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, caelestia-shell, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
 
       nix-btw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+	specialArgs = { inherit inputs; };
         modules = [
           ./host
+	  ./caelestia.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs    = true;
             home-manager.useUserPackages  = true;
-	    home-manager.extraSpecialArgs = { inherit caelestia-shell; };
-            home-manager.users.micha      = import ./home/home.nix;
+            home-manager.users.micha = import ./home/home.nix;
           }
         ];
       };
