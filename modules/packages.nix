@@ -46,6 +46,7 @@
     spotify
     rofi
     quickshell
+    blueman
 
     # ── Editor ────────────────────────────────────────────────
     neovim

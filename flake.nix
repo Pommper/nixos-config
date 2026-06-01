@@ -14,20 +14,23 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, caelestia-shell, ... }: {
     nixosConfigurations = {
 
       nix-btw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	specialArgs = { inherit inputs; };
         modules = [
           ./host
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs    = true;
-            home-manager.useUserPackages  = true;
-	    home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.micha = import ./home/home.nix;
+            home-manager.useGlobalPkgs   = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.micha = {
+              imports = [
+                caelestia-shell.homeManagerModules.default
+                (import ./home/home.nix)
+              ];
+            };
           }
         ];
       };

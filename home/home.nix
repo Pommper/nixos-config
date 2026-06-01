@@ -7,6 +7,7 @@
     ./shell/zsh.nix
     ./hyprland.nix
     ./caelestia.nix
+    ./kitty.nix
   ];
 
   home.username      = "micha";
@@ -22,6 +23,15 @@
   	music     = "${config.home.homeDirectory}/Music";
   	pictures  = "${config.home.homeDirectory}/Pictures";
   	videos    = "${config.home.homeDirectory}/Videos";
+  };
+
+  # GTK-Theming (Zwingt das System, Papirus bereitzustellen)
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
   };
 
   programs.home-manager.enable = true;

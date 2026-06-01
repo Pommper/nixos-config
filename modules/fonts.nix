@@ -13,6 +13,8 @@
       material-symbols
       papirus-icon-theme
       fluent-icon-theme
+      material-symbols
+      material-design-icons
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font" ];
