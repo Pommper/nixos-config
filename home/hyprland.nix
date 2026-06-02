@@ -1,44 +1,147 @@
-# home/hyprland/default.nix
-{ ... }:
+{ config, pkgs, ... }:
 
+let
+  mainMod = "SUPER";
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
 
     settings = {
-      monitor = ",preferred,auto,1";
+      monitor = ",preferred,auto,1.2";
 
-      exec-once = [
-        "caelestia shell -d"
+      #exec-once = [
+      #  "caelestia shell -d"
+      #];
+
+      env = [
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
       ];
 
-      "$mod" = "SUPER";
+      "$mod" = mainMod;
+
+      general = {
+        gaps_in = 5;
+        gaps_out = 20;
+        border_size = 2;
+        layout = "dwindle";
+        resize_on_border = false;
+        allow_tearing = false;
+      };
+
+      decoration = {
+        rounding = 10;
+        rounding_power = 2;
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
+
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "0xee1a1a1a";
+        };
+
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+          vibrancy = 0.1696;
+        };
+      };
+
+      animations = {
+        enabled = true;
+      };
+
+      input = {
+        kb_layout = "us";
+        follow_mouse = 1;
+        sensitivity = 0;
+        touchpad.natural_scroll = false;
+      };
+
+      dwindle = {
+        preserve_split = true;
+      };
+
+      master = {
+        new_status = "master";
+      };
+
+      misc = {
+        force_default_wallpaper = -1;
+        disable_hyprland_logo = false;
+      };
+
+      bezier = [
+        "easeOutQuint, 0.23, 1, 0.32, 1"
+        "easeInOutCubic, 0.65, 0.05, 0.36, 1"
+        "linear, 0, 0, 1, 1"
+        "almostLinear, 0.5, 0.5, 0.75, 1"
+        "quick, 0.15, 0, 0.1, 1"
+      ];
+
+      animation = [
+        "global, 1, 10, default"
+        "border, 1, 5.39, easeOutQuint"
+        "windows, 1, 4.79, easeOutQuint, popin 87%"
+        "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+        "windowsOut, 1, 1.49, linear, popin 87%"
+        "fadeIn, 1, 1.73, almostLinear"
+        "fadeOut, 1, 1.46, almostLinear"
+        "fade, 1, 3.03, quick"
+        "layers, 1, 3.81, easeOutQuint"
+        "layersIn, 1, 4, easeOutQuint, fade"
+        "layersOut, 1, 1.5, linear, fade"
+        "fadeLayersIn, 1, 1.79, almostLinear"
+        "fadeLayersOut, 1, 1.39, almostLinear"
+        "workspaces, 1, 1.94, almostLinear, fade"
+        "workspacesIn, 1, 1.21, almostLinear, fade"
+        "workspacesOut, 1, 1.94, almostLinear, fade"
+        "zoomFactor, 1, 7, quick"
+      ];
 
       bind = [
-        "$mod, Return, exec, kitty"
-        "$mod, Space, exec, caelestia launcher"
-        "$mod, Q, killactive"
-        "$mod, F, fullscreen"
-        "$mod SHIFT, F, togglefloating"
-        "$mod SHIFT, Q, exit"
-        "$mod, h, movefocus, l"
-        "$mod, l, movefocus, r"
-        "$mod, k, movefocus, u"
-        "$mod, j, movefocus, d"
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod, Q, exec, kitty"
+        "$mod, C, killactive"
+        "$mod, M, exit"
+        "$mod, E, exec, nautilus"
+        "$mod, V, togglefloating"
+        "$mod, R, exec, caelestia launcher"
+        "$mod, P, pseudo"
+        "$mod, J, layoutmsg, togglesplit"
+
+        # Caelestia global shortcuts
+        "$mod, Space, global, caelestia:launcher"
+        "$mod, D, global, caelestia:dashboard"
+        "$mod, N, global, caelestia:session"
+        "$mod, B, global, caelestia:sidebar"
+        "$mod, A, global, caelestia:showall"
+        "$mod, Escape, global, caelestia:controlCenter"
+
+        # Focus direction
+        "$mod, left,  movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up,    movefocus, u"
+        "$mod, down,  movefocus, d"
+
+        # Special workspace (scratchpad)
+        "$mod, S, togglespecialworkspace, magic"
+        "$mod SHIFT, S, movetoworkspace, special:magic"
+
+        # Swipe gestures (replaces deprecated workspace_swipe)
+        ", SwipeLeft, workspace, e+1"
+        ", SwipeRight, workspace, e-1"
+      ] ++ (builtins.genList (i:
+        let key = toString (if i == 9 then 0 else i + 1);
+        in "$mod, ${key}, workspace, ${toString (i + 1)}"
+      ) 10) ++ (builtins.genList (i:
+        let key = toString (if i == 9 then 0 else i + 1);
+        in "$mod SHIFT, ${key}, movetoworkspace, ${toString (i + 1)}"
+      ) 10) ++ [
         ", Print, exec, grimblast copy area"
       ];
 
@@ -47,34 +150,27 @@
         "$mod, mouse:273, resizewindow"
       ];
 
-      bindel = [
-        ", XF86AudioRaiseVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86MonBrightnessUp,   exec, brightnessctl set 10%+"
+      binde = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
         ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
 
       bindl = [
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
       ];
 
-      general = {
-        gaps_in     = 5;
-        gaps_out    = 10;
-        border_size = 2;
-        layout      = "dwindle";
-      };
-
-      decoration = {
-        rounding = 10;
-        blur = {
-          enabled = true;
-          size    = 8;
-          passes  = 2;
-        };
-      };
+      windowrule = [
+        "no_initial_focus 1, match:class ^$ AND match:title ^$ AND match:xwayland 1 AND match:floating 1 AND match:fullscreen 0"
+        "float on, match:class hyprland-run"
+        "move 20 monitor_h-120, match:class hyprland-run"
+      ];
     };
   };
-
-  programs.rofi.enable = true;
 }

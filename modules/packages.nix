@@ -31,6 +31,7 @@
     atuin
     zellij
     btop
+    opencode
 
     # ── Entwicklung ───────────────────────────────────────────
     vscode
@@ -46,7 +47,6 @@
     spotify
     rofi
     quickshell
-    blueman
 
     # ── Editor ────────────────────────────────────────────────
     neovim

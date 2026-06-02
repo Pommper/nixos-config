@@ -25,13 +25,9 @@
   	videos    = "${config.home.homeDirectory}/Videos";
   };
 
-  # GTK-Theming (Zwingt das System, Papirus bereitzustellen)
+  # GTK-Theming
   gtk = {
     enable = true;
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
   };
 
   programs.home-manager.enable = true;

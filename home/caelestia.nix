@@ -1,18 +1,14 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # ── Caelestia Shell ─────────────────────────────────────────
   programs.caelestia = {
     enable = true;
-    cli.enable = true;   # caelestia-cli für volle Funktionalität
+    cli.enable = true;
+  };
 
-  settings = {
-      general.apps = {
-        terminal  = [ "kitty" ];
-        audio     = [ "pavucontrol" ];
-        explorer  = [ "nautilus" ];
-        playback  = [ "mpv" ];
-      };
-    };
+  # Session-Variablen für Caelestia
+  home.sessionVariables = {
+    QS_DROP_EXPENSIVE_FONTS = "0";
   };
 }
