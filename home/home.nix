@@ -32,5 +32,11 @@
 
   programs.home-manager.enable = true;
 
+  # Disable Blueman tray icons (StatusNotifierItem + StatusIcon) because
+  # Caelestia Shell already provides its own Bluetooth indicator.
+  dconf.settings."org/blueman/general" = {
+    plugin-list = [ "!StatusNotifierItem" "!StatusIcon" ];
+  };
+
   xdg.enable = true;
 }
