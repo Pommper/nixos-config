@@ -4,7 +4,7 @@
 {
   imports = [
     ./home/env.nix
-    ./home/zsh.nix
+    ./home/shell.nix
     ./home/hyprland.nix
     ./home/caelestia.nix
     ./home/kitty.nix
