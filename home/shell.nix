@@ -22,6 +22,7 @@
       gl      = "git pull";
       ga      = "git add .";
       gc      = "git commit -m";
+      ff      = "fastfetch";
     };
 
     initContent = ''

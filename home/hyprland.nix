@@ -11,14 +11,8 @@ in
     settings = {
       monitor = ",preferred,auto,1.2";
 
-      #exec-once = [
-      #  "caelestia shell -d"
+      #env = [
       #];
-
-      env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
-      ];
 
       "$mod" = mainMod;
 
@@ -105,10 +99,10 @@ in
       ];
 
       bind = [
-        "$mod, Q, exec, kitty"
-        "$mod, C, killactive"
+        "$mod, Return, exec, kitty"
+        "$mod, X, killactive"
         "$mod, M, exit"
-        "$mod, E, exec, nautilus"
+        "$mod, F, exec, nautilus"
         "$mod, V, togglefloating"
         "$mod, R, exec, caelestia launcher"
         "$mod, P, pseudo"
@@ -116,11 +110,11 @@ in
 
         # Caelestia global shortcuts
         "$mod, Space, global, caelestia:launcher"
-        "$mod, D, global, caelestia:dashboard"
-        "$mod, N, global, caelestia:session"
-        "$mod, B, global, caelestia:sidebar"
+        "$mod, TAB, global, caelestia:dashboard"
+        "$mod, Escape, global, caelestia:session"
+        "$mod, N, global, caelestia:sidebar"
         "$mod, A, global, caelestia:showall"
-        "$mod, Escape, global, caelestia:controlCenter"
+        #"$mod, Escape, global, caelestia:controlCenter"
 
         # Focus direction
         "$mod, left,  movefocus, l"
@@ -129,8 +123,8 @@ in
         "$mod, down,  movefocus, d"
 
         # Special workspace (scratchpad)
-        "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod, mouse:274, togglespecialworkspace, magic"
+        "$mod SHIFT, mouse:274, movetoworkspace, special:magic"
 
         # Swipe gestures (replaces deprecated workspace_swipe)
         ", SwipeLeft, workspace, e+1"

@@ -3,11 +3,11 @@
 
 {
   imports = [
-    ./env.nix
-    ./shell/zsh.nix
-    ./hyprland.nix
-    ./caelestia.nix
-    ./kitty.nix
+    ./home/env.nix
+    ./home/zsh.nix
+    ./home/hyprland.nix
+    ./home/caelestia.nix
+    ./home/kitty.nix
   ];
 
   home.username      = "micha";
@@ -17,7 +17,6 @@
   xdg.userDirs = {
   	enable = true;
 	createDirectories = true;
-	desktop   = "${config.home.homeDirectory}/Desktop";
   	documents = "${config.home.homeDirectory}/Documents";
   	download  = "${config.home.homeDirectory}/Downloads";
   	music     = "${config.home.homeDirectory}/Music";
@@ -25,18 +24,24 @@
   	videos    = "${config.home.homeDirectory}/Videos";
   };
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };   
+
   # GTK-Theming
   gtk = {
     enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
   };
 
   programs.home-manager.enable = true;
-
-  # Disable Blueman tray icons (StatusNotifierItem + StatusIcon) because
-  # Caelestia Shell already provides its own Bluetooth indicator.
-  dconf.settings."org/blueman/general" = {
-    plugin-list = [ "!StatusNotifierItem" "!StatusIcon" ];
-  };
 
   xdg.enable = true;
 }

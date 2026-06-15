@@ -33,6 +33,13 @@
     enable          = true;
     wayland.enable  = true;
   };
+  services.upower.enable = true;
+  services.gvfs.enable = true;
+  services.power-profiles-daemon.enable = true;
+
+  programs.steam = {
+    enable = true;
+  };  
 
   # ── GPU Passthrough (später einrichten) ──────────────────────
   # virtualisation.libvirtd.enable = true;

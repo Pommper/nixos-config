@@ -9,11 +9,16 @@
     wget
     curl
     unzip
+    psmisc
     pciutils    # lspci
     usbutils    # lsusb
     lshw        # Hardware Info
     nix-tree    # Nix Abhängigkeiten visualisieren
     nvd         # Nix Version Diff
+
+    # ── Hyprland ───────────────────────────────────────
+    hypridle
+    hyprpaper
 
     # ── Terminal Tools ─────────────────────────────────
     eza
@@ -41,12 +46,14 @@
 
     # ── Apps ──────────────────────────────────────────────────
     brave
-    vesktop
-    nautilus    # File Manager
+    (discord.override { withVencord = true; })
+    nautilus
     kitty
     spotify
     rofi
     quickshell
+    win2xcur
+    nwg-look
 
     # ── Editor ────────────────────────────────────────────────
     neovim
@@ -58,6 +65,4 @@
     # ── RGB ───────────────────────────────────────────────────
     openrgb
   ];
-
-  programs.steam.enable = true;
 }
