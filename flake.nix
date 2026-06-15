@@ -28,7 +28,7 @@
             home-manager.users.micha = {
               imports = [
                 caelestia-shell.homeManagerModules.default
-                (import ./home/home.nix)
+                (import ./home.nix)
               ];
             };
           }
