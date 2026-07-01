@@ -53,7 +53,8 @@
     rofi
     quickshell
     win2xcur
-    nwg-look
+    modrinth-app
+    prismlauncher
 
     # ── Editor ────────────────────────────────────────────────
     neovim
