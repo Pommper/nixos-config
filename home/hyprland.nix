@@ -6,10 +6,14 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     systemd.enable = true;
 
     settings = {
-      monitor = ",preferred,auto,1.2";
+      monitor = [
+        "eDP-1,1920x1080@60,0x0,1.2"
+        "HDMI-1,preferred,1920x0,1"
+      ];
 
       "$mod" = mainMod;
 
@@ -95,6 +99,12 @@ in
         "zoomFactor, 1, 7, quick"
       ];
 
+      # special workspaces
+      bindr = [
+        ",mouse:274, togglespecialworkspace, magic"
+	"$mod SHIFT, mouse:274, movetoworkspace, special:magic"
+      ];
+
       bind = [
         "$mod, Return, exec, kitty"
         "$mod, X, killactive"
@@ -119,9 +129,14 @@ in
         "$mod, up,    movefocus, u"
         "$mod, down,  movefocus, d"
 
-        # Special workspace (scratchpad)
-        "$mod, mouse:274, togglespecialworkspace, magic"
-        "$mod SHIFT, mouse:274, movetoworkspace, special:magic"
+	# Durch Workspaces scrollen mit mainMod + Mausrad/maustasten
+	"$mod, mouse_down, workspace, e+1"
+	"$mod, mouse_up, workspace, e-1"
+ 
+	",mouse:275, workspace, e+1"
+	",mouse:276, workspace, e-1"
+
+
 
         # Swipe gestures (replaces deprecated workspace_swipe)
         ", SwipeLeft, workspace, e+1"
@@ -161,6 +176,20 @@ in
         "no_initial_focus 1, match:class ^$ AND match:title ^$ AND match:xwayland 1 AND match:floating 1 AND match:fullscreen 0"
         "float on, match:class hyprland-run"
         "move 20 monitor_h-120, match:class hyprland-run"
+      ];
+
+      workspace = [
+        "1, monitor:DP-1, default:true"
+	"2, monitor:eDP-1"
+	"3, monitor:eDP-1"
+	"4, monitor:eDP-1"
+	"5, monitor:eDP-1"
+ 
+	"6, monitor:HDMI-1, default:true"
+	"7, monitor:HDMI-1"
+	"8, monitor:HDMI-1"
+	"9, monitor:HDMI-1"
+	"10, monitor:HDMI-1"
       ];
     };
   };
