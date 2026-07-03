@@ -1,5 +1,5 @@
 # home/zsh.nix
-{ ... }:
+{ config, pkgs, ... }:
 
 {
   programs.zsh = {
@@ -7,6 +7,7 @@
     autosuggestion.enable     = true;
     syntaxHighlighting.enable = true;
     enableCompletion          = true;
+    dotDir                    = config.home.homeDirectory;
 
     shellAliases = {
       ls      = "eza --icons";
