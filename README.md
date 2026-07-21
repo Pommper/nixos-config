@@ -6,6 +6,7 @@
 nixos-config/
 ├── flake.nix
 ├── flake.lock
+├── home.nix
 ├── host
 │   ├── default.nix                  # Desktop-spezifisch (AMD RX 9070 XT, Hyprland)
 │   └── hardware-configuration.nix   # automatisch generiert
@@ -22,11 +23,11 @@ nixos-config/
 │   ├── timezone.nix                     # Zeitzone, Sprache, Tastatur
 │   └── user.nix                         # User micha
 └── home/                                # User-Konfiguration (Home Manager)
-    ├── home.nix                         # Einstiegspunkt
     ├── env.nix                          # Umgebungsvariablen
     ├── hyprland.nix                     # Aktiviert hyprland
-    └── shell/
-        └── zsh.nix                      # Zsh + Kitty + Starship
+    ├── caelestia.nix                    # caelestia shell conf
+    ├── kitty.nix                        # Kitty conf
+    └── shell                            # Zsh
 ```
 
 ## Hardware
@@ -48,7 +49,7 @@ git clone https://github.com/Pommper/nixos-config ~/.nixos
 cp /etc/nixos/hardware-configuration.nix ~/.nixos/host/
 
 # 4. System bauen
-sudo nixos-rebuild switch --flake ~/.nixos#nix-btw
+sudo nixos-install switch --flake ~/.nixos#nix-btw
 ```
 
 ## Wichtige Befehle
